@@ -1,4 +1,4 @@
-name: Build and Deploy
+ityname: Build and Deploy
  on:
    push:
      branches:
@@ -15,7 +15,7 @@ name: Build and Deploy
        with:
          github_access_token: $ 
          build_configuration: production 
-         base_href: /angular-barcode-qr-code-scanner/   
+         base_href: /velocity-frontend/   
          deploy_branch: gh-pages 
-         angular_dist_build_folder: dist/angular-barcode-qr-code-scanner
+         angular_dist_build_folder: dist/velocity-frontend
     
