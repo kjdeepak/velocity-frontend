@@ -1,0 +1,136 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "velocity-frontend": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/velocity-frontend",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/dynamsoft-capture-vision-std/dist",
+                "output": "assets/dynamsoft-capture-vision-std"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/dynamsoft-image-processing/dist",
+                "output": "assets/dynamsoft-image-processing"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/dynamsoft-core/dist",
+                "output": "assets/dynamsoft-core"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/dynamsoft-license/dist",
+                "output": "assets/dynamsoft-license"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/dynamsoft-capture-vision-router/dist",
+                "output": "assets/dynamsoft-capture-vision-router"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/dynamsoft-barcode-reader/dist",
+                "output": "assets/dynamsoft-barcode-reader"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/dynamsoft-camera-enhancer/dist",
+                "output": "assets/dynamsoft-camera-enhancer"
+              }
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "velocity-frontend:build:production"
+            },
+            "development": {
+              "buildTarget": "velocity-frontend:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "velocity-frontend:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  }
+}
